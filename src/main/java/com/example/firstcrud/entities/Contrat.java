@@ -32,5 +32,4 @@ public class Contrat {
     private int montantContrat;
     @ManyToOne(cascade =CascadeType.ALL)
     private Etudiant etudiant;
-
 }
