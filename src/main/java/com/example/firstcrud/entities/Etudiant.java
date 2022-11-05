@@ -43,7 +43,7 @@ public class Etudiant implements Serializable {
     @Column(name = "etu_option", nullable = false)
     private Option option;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "departement_id")
     private Departement departement;
 
