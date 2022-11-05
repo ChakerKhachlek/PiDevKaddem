@@ -28,6 +28,7 @@ public class EtudiantController {
 
     @PostMapping("/add-etudiant")
     public Etudiant addEtudiant(@RequestBody  Etudiant e) {
+
         Etudiant etud=etudiantService.addEtudiant(e);
         return etud;
     }
