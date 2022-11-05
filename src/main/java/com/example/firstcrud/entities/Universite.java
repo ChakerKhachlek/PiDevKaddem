@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import javax.persistence.*;
 
 @Entity
-@Table(name="universites")
+@Table(name="universite")
 @EnableAutoConfiguration
 public class Universite {
     @Id
