@@ -19,7 +19,7 @@ public class Departement {
     @Column(name = "nomDepart", nullable = false)
     private String nomDepart;
 
-    @OneToMany(mappedBy = "departement", orphanRemoval = true)
+    @OneToMany(mappedBy = "departement",cascade=CascadeType.ALL)
     private Set<Etudiant> etudiants = new LinkedHashSet<>();
 
     @ManyToOne
