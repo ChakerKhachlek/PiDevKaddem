@@ -48,8 +48,6 @@ public class Etudiant implements Serializable {
     private Departement departement;
 
 
-
-
     @OneToMany(mappedBy = "etudiant", orphanRemoval = true)
     private Set<Contrat> contrats = new LinkedHashSet<>();
 
