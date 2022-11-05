@@ -1,4 +1,9 @@
 package com.example.firstcrud.repositories;
 
-public interface IDetailEqRepository {
+import com.example.firstcrud.entities.DetailEquipe;
+import org.springframework.data.repository.CrudRepository;
+
+public interface IDetailEqRepository extends CrudRepository<DetailEquipe,Integer> {
+
+
 }
