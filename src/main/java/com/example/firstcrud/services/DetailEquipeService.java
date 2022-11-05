@@ -1,16 +1,16 @@
 package com.example.firstcrud.services;
-
-
+import com.example.firstcrud.services.IDetailEquipeService;
+import com.example.firstcrud.entities.DetailEquipe;
 import com.example.firstcrud.repositories.IDetailEqRepository;
 import org.springframework.stereotype.Service;
 
 public class DetailEquipeService {
     @Service("DetailEquipeService")
-    public class DetailEquipe implements IDetailEqRepository {
+    public class DetailEquipeService implements IDetailEquipeService {
 
         private IDetailEqRepository detaileqRepository;
 
-        public DetailEquipe(IDetailEqRepository Idetaileqrepository) {
+        public DetailEquipeService(IDetailEqRepository Idetaileqrepository) {
 
             this.detaileqRepository =Idetaileqrepository;
         }
@@ -19,14 +19,12 @@ public class DetailEquipeService {
             return detaileqRepository.save(detailEquipe);
         }
 
-        public void removeDeteq(Integer idDeteq) {
+        public void removeDeteq(Long idDeteq) {
             detaileqRepository.deleteById(idDeteq);
         }
         public DetailEquipe updateDeteq(DetailEquipe detailEquipe) {
 
-            return detailEquipe.save(detailEquipe);
+            return detaileqRepository.save(detailEquipe);
         }
-        public void removeDeteq(Integer iddeteq) {
-            detaileqRepository.deleteById(iddeteq);
-        }
-}
+
+}}
