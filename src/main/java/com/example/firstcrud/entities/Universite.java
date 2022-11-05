@@ -1,34 +1,16 @@
 package com.example.firstcrud.entities;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 
 @Entity
-@Table(name="universites")
-@EnableAutoConfiguration
-public class Universite {
+public class Universite implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_univ", nullable = false)
-    private Long idUniv;
-
-    @Column(name = "nomUniv", nullable = false)
+    private int idUniv;
     private String nomUniv;
+    @OneToMany(cascade=CascadeType.ALL)
+    private Set<Departement> departement;
 
-    public Long getIdUniv() {
-        return idUniv;
-    }
-
-    public void setIdUniv(Long idUniv) {
-        this.idUniv = idUniv;
-    }
-
-    public String getNomUniv() {
-        return nomUniv;
-    }
-
-    public void setNomUniv(String nomUniv) {
-        this.nomUniv = nomUniv;
-    }
 }
