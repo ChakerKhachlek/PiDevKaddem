@@ -17,8 +17,10 @@ public class Etudiant {
    @ManyToOne
     private Departement departement;
 
+
    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "etudiant")
    private Set<Contrat> contrat;
    @ManyToMany(cascade = CascadeType.ALL)
    private Set<Equipe> equipe ;
 }
+

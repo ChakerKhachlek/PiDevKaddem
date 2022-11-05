@@ -5,7 +5,11 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
+
+@Table(name="universite")
+@EnableAutoConfiguration
 public class Universite implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUniv;

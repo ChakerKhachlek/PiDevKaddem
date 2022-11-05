@@ -29,7 +29,9 @@ public class Contrat {
     private Specialite specialite;
 
     private Boolean archive;
+
     private int montantContrat;
     @ManyToOne(cascade =CascadeType.ALL)
     private Etudiant etudiant;
 }
+
