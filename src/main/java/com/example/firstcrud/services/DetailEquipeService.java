@@ -6,13 +6,13 @@ import org.springframework.stereotype.Service;
 
 public class DetailEquipeService {
     @Service("DetailEquipeService")
-    public class DetailEquipeService implements IDetailEquipeService {
+    public class DetailEquipeServices implements IDetailEquipeService {
 
         private IDetailEqRepository detaileqRepository;
 
-        public DetailEquipeService(IDetailEqRepository Idetaileqrepository) {
+        public DetailEquipeServices(IDetailEqRepository deteqRepository) {
 
-            this.detaileqRepository =Idetaileqrepository;
+            this.detaileqRepository =deteqRepository;
         }
         public DetailEquipe addDeteq(DetailEquipe detailEquipe){
 
@@ -22,7 +22,9 @@ public class DetailEquipeService {
         public void removeDeteq(Long idDeteq) {
             detaileqRepository.deleteById(idDeteq);
         }
-        public DetailEquipe updateDeteq(DetailEquipe detailEquipe) {
+
+        public DetailEquipe updateDeteq(DetailEquipe detailEquipe)
+        {
 
             return detaileqRepository.save(detailEquipe);
         }
