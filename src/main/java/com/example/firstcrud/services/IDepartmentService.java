@@ -15,6 +15,6 @@ public interface IDepartmentService {
 
     List<Departement> retreiveAllDep();
 
-    Optional<Departement> retrieveDepartment(Integer id);
+    Departement retrieveDepartment(Integer id);
 
 }

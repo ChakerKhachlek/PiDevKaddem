@@ -40,7 +40,7 @@ public class DepartementService {
 
         @Override
         public List<Departement> retreiveAllDep() {
-            return departRepository.retreiveAllDep();
+            return departRepository.findAll();
         }
 
 
@@ -49,8 +49,8 @@ public class DepartementService {
 
 
         @Override
-        public Optional<Departement> retrieveDepartment(Integer id) {
-            return departRepository.findById(id);
+        public Departement retrieveDepartment(Integer id) {
+            return departRepository.findById(id).orElse(null);
         }
 
         public void removeDepartement(Integer idDep) {

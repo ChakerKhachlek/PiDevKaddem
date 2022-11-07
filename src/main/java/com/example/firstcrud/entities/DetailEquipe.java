@@ -4,11 +4,12 @@ package com.example.firstcrud.entities;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="DetailsEquipes")
 @EnableAutoConfiguration
-public class DetailEquipe {
+public class DetailEquipe implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "detail_equipe_id", nullable = false)
