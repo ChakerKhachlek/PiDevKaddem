@@ -15,39 +15,47 @@ public class DepartementService {
 
     @Service("DepartmentService")
     public class DepartmentService implements IDepartmentService{
-
+@Autowired
         private IDepartRepository departRepository;
 
         public DepartmentService(IDepartRepository DEPRepository) {
 
             this.departRepository =DEPRepository;
         }
-        public Departement addDep(Departement departement){
 
+
+        @Override
+        public Departement addDepartement(Departement departement) {
             return departRepository.save(departement);
         }
+
         public void removeDepart(Integer idDepart) {
             departRepository.deleteById(idDepart);
         }
-        public Departement updateDepart(Departement departement) {
 
+        @Override
+        public Departement updateDep(Departement departement) {
             return departRepository.save(departement);
         }
+
+        @Override
+        public List<Departement> retreiveAllDep() {
+            return departRepository.retreiveAllDep();
+        }
+
+
+
+
+
+
+        @Override
+        public Optional<Departement> retrieveDepartment(Integer id) {
+            return departRepository.findById(id);
+        }
+
         public void removeDepartement(Integer idDep) {
             departRepository.deleteById(idDep);
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 
