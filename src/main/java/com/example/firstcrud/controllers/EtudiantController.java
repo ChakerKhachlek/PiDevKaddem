@@ -1,5 +1,6 @@
 package com.example.firstcrud.controllers;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.example.firstcrud.entities.Etudiant;
 import com.example.firstcrud.services.IEtudiantService;
 import lombok.AllArgsConstructor;
@@ -28,7 +29,7 @@ public class EtudiantController {
 
     @PostMapping("/add-etudiant")
     public Etudiant addEtudiant(@RequestBody  Etudiant e) {
-
+        System.out.println(e);
         Etudiant etud=etudiantService.addEtudiant(e);
         return etud;
     }

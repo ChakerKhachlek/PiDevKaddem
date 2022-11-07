@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 
 import javax.persistence.Id;
 
-public interface IContratRepository extends CrudRepository<Contrat, Id> {
+public interface IContratRepository extends CrudRepository<Contrat, Integer> {
 }
