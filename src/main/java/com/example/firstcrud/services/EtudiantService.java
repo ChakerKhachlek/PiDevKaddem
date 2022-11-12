@@ -1,7 +1,11 @@
 package com.example.firstcrud.services;
 import com.example.firstcrud.entities.Contrat;
+
+import com.example.firstcrud.entities.Equipe;
 import com.example.firstcrud.entities.Etudiant;
 import com.example.firstcrud.repositories.IContratRepository;
+import com.example.firstcrud.repositories.IEquipeRepository;
+
 import com.example.firstcrud.repositories.IEtudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +22,7 @@ public class EtudiantService implements IEtudiantService{
     @Autowired
     private IContratRepository contratRepository;
     
+
     public EtudiantService(IEtudRepository etudRepository) {
         this.etudRepository = etudRepository;
     }
@@ -29,7 +34,7 @@ public class EtudiantService implements IEtudiantService{
 
 
     @Override
-    public void removeEtudiant(Integer idEtud) {
+    public void removeEtudiant(Long idEtud) {
         etudRepository.deleteById(idEtud);
     }
 
@@ -41,15 +46,15 @@ public class EtudiantService implements IEtudiantService{
 
     @Override
     public List<Etudiant> retreiveAllEtudiants() {
-        return etudRepository.retreiveAllEtudiants();
+        return (List<Etudiant>) etudRepository.findAll();
     }
 
-    public Optional<Etudiant> retrieveEtudiant(Integer idEtudiant) {
+    public Optional<Etudiant> retrieveEtudiant(Long idEtudiant) {
         return etudRepository.findById(idEtudiant);
     }
 
     @Override
-    public void addEtudiantContrats(List<Contrat> lc, Integer idEtudiant) {
+    public void addEtudiantContrats(List<Contrat> lc, Long idEtudiant) {
         Etudiant etudiant = etudRepository.findById(idEtudiant).orElse(null);
         for (Contrat contrat : lc) {
             contrat.setEtudiant(etudiant);

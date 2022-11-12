@@ -1,6 +1,10 @@
 package com.example.firstcrud.controllers;
 
+
+import ch.qos.logback.core.net.SyslogOutputStream;
+
 import com.example.firstcrud.entities.Contrat;
+
 import com.example.firstcrud.entities.Etudiant;
 import com.example.firstcrud.services.IEtudiantService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,20 +31,20 @@ public class EtudiantController {
 
     @Operation(description = "Add contracts to etudiant")
     @PostMapping("/add-contrats/{id-etudiant}")
-    public void ajouterEtaffecterListeboutiques(@RequestBody List<Contrat> lc, @PathVariable("id-etudiant") Integer idEtudiant){
+    public void ajouterEtaffecterListeContrats(@RequestBody List<Contrat> lc, @PathVariable("id-etudiant") Long idEtudiant){
         etudiantService.addEtudiantContrats(lc, idEtudiant);
     }
 
     @Operation(description = "Retreive etudiant by ID")
     @GetMapping("/retrieve-etudiant/{etudiant-id}")
-    public Optional<Etudiant> retrieveEquipe(@PathVariable("etudiant-id") Integer etudiantId) {
+    public Optional<Etudiant> retrieveEtudiant(@PathVariable("etudiant-id") Long etudiantId) {
         return etudiantService.retrieveEtudiant(etudiantId);
     }
 
     @Operation(description = "Add etudiant")
     @PostMapping("/add-etudiant")
     public Etudiant addEtudiant(@RequestBody  Etudiant e) {
-
+        System.out.println(e);
         Etudiant etud=etudiantService.addEtudiant(e);
         return etud;
     }
@@ -55,7 +59,7 @@ public class EtudiantController {
     
     @Operation(description = "Remove etudiant")
     @DeleteMapping("/remove-etudiant/{etudiant-id}")
-    public void removeEtudiant(@PathVariable("etudiant-id") Integer etudiantID) {
+    public void removeEtudiant(@PathVariable("etudiant-id") Long etudiantID) {
         etudiantService.removeEtudiant(etudiantID);
     }
 

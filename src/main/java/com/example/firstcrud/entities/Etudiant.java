@@ -1,8 +1,13 @@
 package com.example.firstcrud.entities;
 
+
 import lombok.NoArgsConstructor;
 import org.hibernate.Hibernate;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,9 +15,8 @@ import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
-
 @Entity
+
 @EnableAutoConfiguration
 @NoArgsConstructor
 @Table( name= "etudiants")
@@ -22,17 +26,18 @@ public class Etudiant implements Serializable {
         this.prenomE = prenom;
         this.option = option;
     }
-    
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idEtudiant;
+    private Long idEtudiant;
     @Column(name="firstname")
     private String prenomE;
     @Column(name="lastname")
     private String nomE;
     @Enumerated(EnumType.STRING)
     private Option option;
-   @ManyToOne
+    @ManyToOne
     private Departement departement;
 
     @OneToMany(mappedBy = "etudiant", orphanRemoval = true,cascade = CascadeType.ALL)
@@ -67,11 +72,11 @@ public class Etudiant implements Serializable {
         this.contrats = contrats;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return idEtudiant;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.idEtudiant = id;
     }
 
@@ -99,23 +104,13 @@ public class Etudiant implements Serializable {
         this.option = option;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Etudiant etudiant = (Etudiant) o;
-        return id != null && Objects.equals(idEtudiant, etudiant.idEtudiant);
-    }
+
 
     @Override
     public int hashCode() {
         return getClass().hashCode();
     }
 
-   @OneToMany(cascade = CascadeType.ALL ,mappedBy = "etudiant")
-   private Set<Contrat> contrat;
-   @ManyToMany(cascade = CascadeType.ALL)
-   private Set<Equipe> equipe ;
+
 
 }
-

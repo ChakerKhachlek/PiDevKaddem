@@ -13,11 +13,9 @@ public class Departement implements Serializable {
     private Long idDepart;
 
 
-
     private String nomDepart;
     @OneToMany(mappedBy = "departement",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<Etudiant> etudiant;
-
 
 
 }
