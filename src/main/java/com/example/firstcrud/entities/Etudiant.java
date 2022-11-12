@@ -1,7 +1,16 @@
 package com.example.firstcrud.entities;
 
+import lombok.NoArgsConstructor;
+import org.hibernate.Hibernate;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Set;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Entity
 @EnableAutoConfiguration
@@ -9,8 +18,8 @@ import java.util.Set;
 @Table( name= "etudiants")
 public class Etudiant implements Serializable {
     public Etudiant(String nom, String prenom, Option option) {
-        this.nom = nom;
-        this.prenom = prenom;
+        this.nomE = nom;
+        this.prenomE = prenom;
         this.option = option;
     }
     
@@ -59,27 +68,27 @@ public class Etudiant implements Serializable {
     }
 
     public Integer getId() {
-        return id;
+        return idEtudiant;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.idEtudiant = id;
     }
 
     public String getNom() {
-        return nom;
+        return nomE;
     }
 
     public void setNom(String nomE) {
-        this.nom = nomE;
+        this.nomE = nomE;
     }
 
     public String getPrenom() {
-        return prenom;
+        return prenomE;
     }
 
     public void setPrenom(String prenomE) {
-        this.prenom = prenomE;
+        this.prenomE = prenomE;
     }
 
     public Option getOption() {
@@ -95,7 +104,7 @@ public class Etudiant implements Serializable {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Etudiant etudiant = (Etudiant) o;
-        return id != null && Objects.equals(id, etudiant.id);
+        return id != null && Objects.equals(idEtudiant, etudiant.idEtudiant);
     }
 
     @Override
