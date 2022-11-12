@@ -31,13 +31,13 @@ public class EtudiantController {
 
     @Operation(description = "Add contracts to etudiant")
     @PostMapping("/add-contrats/{id-etudiant}")
-    public void ajouterEtaffecterListeContrats(@RequestBody List<Contrat> lc, @PathVariable("id-etudiant") Integer idEtudiant){
+    public void ajouterEtaffecterListeContrats(@RequestBody List<Contrat> lc, @PathVariable("id-etudiant") Long idEtudiant){
         etudiantService.addEtudiantContrats(lc, idEtudiant);
     }
 
     @Operation(description = "Retreive etudiant by ID")
     @GetMapping("/retrieve-etudiant/{etudiant-id}")
-    public Optional<Etudiant> retrieveEtudiant(@PathVariable("etudiant-id") Integer etudiantId) {
+    public Optional<Etudiant> retrieveEtudiant(@PathVariable("etudiant-id") Long etudiantId) {
         return etudiantService.retrieveEtudiant(etudiantId);
     }
 
@@ -59,7 +59,7 @@ public class EtudiantController {
     
     @Operation(description = "Remove etudiant")
     @DeleteMapping("/remove-etudiant/{etudiant-id}")
-    public void removeEtudiant(@PathVariable("etudiant-id") Integer etudiantID) {
+    public void removeEtudiant(@PathVariable("etudiant-id") Long etudiantID) {
         etudiantService.removeEtudiant(etudiantID);
     }
 

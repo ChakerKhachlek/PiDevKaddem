@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import java.util.List;
 import java.util.Optional;
 
-@Service("Contrat Service")
+@Service("ContratService")
 public class ContratService implements IContratService{
 
     @Autowired
@@ -20,7 +20,9 @@ public class ContratService implements IContratService{
     }
 
     @Override
-    public void removeContrat(int idContrat) {
+
+    public void removeContrat(Long idContrat) {
+
        contratRepository.deleteById(idContrat);
     }
 
@@ -35,7 +37,9 @@ public class ContratService implements IContratService{
     }
 
     @Override
-    public Optional<Contrat> retrieveContrat(int idContrat) {
+
+    public Optional<Contrat> retrieveContrat(Long idContrat) {
+
         return contratRepository.findById(idContrat);
     }
 }

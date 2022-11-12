@@ -10,15 +10,15 @@ public interface IEtudiantService {
 
     Etudiant addEtudiant(Etudiant etudiant);
 
-    void removeEtudiant(Integer idEtud);
+    void removeEtudiant(Long idEtud);
 
     Etudiant updateEtudiant(Etudiant etudiant);
 
     List<Etudiant> retreiveAllEtudiants();
 
-    Optional<Etudiant> retrieveEtudiant(Integer idEtudiant);
+    Optional<Etudiant> retrieveEtudiant(Long idEtudiant);
 
-    void addEtudiantContrats(List<Contrat> lc, Integer idEtudiant);
+    void addEtudiantContrats(List<Contrat> lc, Long idEtudiant);
 
 
 }

@@ -9,12 +9,16 @@ import java.util.Optional;
 public interface IContratService {
     Contrat addContrat(Contrat contrat);
 
-    void removeContrat(int idContrat);
+
+    void removeContrat(Long idContrat);
+
 
     Contrat updateContrat(Contrat contrat);
 
     List<Contrat> retreiveAllContrats();
 
-    Optional<Contrat> retrieveContrat(int idContrat);
+
+    Optional<Contrat> retrieveContrat(Long idContrat);
+
 
 }
