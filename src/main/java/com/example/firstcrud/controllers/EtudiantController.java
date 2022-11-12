@@ -1,5 +1,6 @@
 package com.example.firstcrud.controllers;
 
+import com.example.firstcrud.entities.Contrat;
 import com.example.firstcrud.entities.Etudiant;
 import com.example.firstcrud.services.IEtudiantService;
 import lombok.AllArgsConstructor;
@@ -19,7 +20,10 @@ public class EtudiantController {
         List<Etudiant> listEquipes = etudiantService.retreiveAllEtudiants();
         return listEquipes;
     }
-
+    @PostMapping("/add-contrats/{id-etudiant}")
+    public void ajouterEtaffecterListeboutiques(@RequestBody List<Contrat> lc, @PathVariable("id-etudiant") Integer idEtudiant){
+        etudiantService.addEtudiantContrats(lc, idEtudiant);
+    }
     @GetMapping("/retrieve-etudiant/{etudiant-id}")
     public Optional<Etudiant> retrieveEquipe(@PathVariable("etudiant-id") Integer etudiantId) {
         return etudiantService.retrieveEtudiant(etudiantId);

@@ -23,6 +23,7 @@ public class Etudiant implements Serializable {
         this.option = option;
     }
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idEtudiant", nullable = false)
@@ -50,7 +51,7 @@ public class Etudiant implements Serializable {
 
 
 
-    @OneToMany(mappedBy = "etudiant", orphanRemoval = true)
+    @OneToMany(mappedBy = "etudiant", orphanRemoval = true,cascade = CascadeType.ALL)
     private Set<Contrat> contrats = new LinkedHashSet<>();
 
     @ManyToMany(mappedBy = "etudiants")

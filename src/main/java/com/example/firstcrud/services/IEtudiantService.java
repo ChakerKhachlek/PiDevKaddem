@@ -1,5 +1,6 @@
 package com.example.firstcrud.services;
 
+import com.example.firstcrud.entities.Contrat;
 import com.example.firstcrud.entities.Etudiant;
 
 import java.util.List;
@@ -16,5 +17,7 @@ public interface IEtudiantService {
     List<Etudiant> retreiveAllEtudiants();
 
     Optional<Etudiant> retrieveEtudiant(Integer idEtudiant);
+
+    void addEtudiantContrats(List<Contrat> lc, Integer idEtudiant);
 
 }
