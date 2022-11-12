@@ -111,11 +111,7 @@ public class Etudiant implements Serializable {
         return getClass().hashCode();
     }
 
-   @OneToMany(cascade = CascadeType.ALL ,mappedBy = "etudiant")
-   private Set<Contrat> contrat;
-   @ManyToMany(cascade = CascadeType.ALL)
 
-   private Set<Equipe> equipes ;
 
 }
 
