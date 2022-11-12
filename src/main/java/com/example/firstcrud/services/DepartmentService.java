@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 @Service("DepartmentService")
 public class DepartmentService implements IDepartmentService{
-    @Autowired
-    private IDepartRepository departRepository;
+
 
 }
