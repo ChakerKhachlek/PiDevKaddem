@@ -2,7 +2,7 @@ package com.example.firstcrud.services;
 
 import com.example.firstcrud.entities.Departement;
 
-import com.example.firstcrud.entities.Etudiant;
+
 import com.example.firstcrud.repositories.IDepartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,7 @@ public class DepartementService implements IDepartmentService{
             return departRepository.save(departement);
         }
 
-        public void removeDepart(Integer idDepart) {
+        public void removeDepart(Long idDepart) {
             departRepository.deleteById(idDepart);
         }
 
@@ -38,7 +38,7 @@ public class DepartementService implements IDepartmentService{
 
         @Override
         public List<Departement> retreiveAllDep() {
-            return departRepository.findAll();
+            return departRepository.retreiveDepartments();
         }
 
 
@@ -47,15 +47,13 @@ public class DepartementService implements IDepartmentService{
 
 
         @Override
-        public Departement retrieveDepartment(Integer id) {
+        public Departement retrieveDepartment(Long id) {
             return departRepository.findById(id).orElse(null);
         }
 
 
 
-        public void removeDepartement(Integer idDep) {
-            departRepository.deleteById(idDep);
-        }
+
 
     }
 

@@ -21,7 +21,7 @@ public class DepartementController {
     }
 
 @GetMapping("/retrieve-departement/{department-id}")
-    public Optional<Departement> retrieveDepartement(@PathVariable("department-id") Integer departmentId) {
+    public Optional<Departement> retrieveDepartement(@PathVariable("department-id") Long departmentId) {
         return Optional.ofNullable(departmentService.retrieveDepartment(departmentId));
     }
     @PostMapping("/add-Department")
@@ -31,7 +31,7 @@ public class DepartementController {
     }
 
     @DeleteMapping("/remove-department/{department-id}")
-    public void removeDepartment(@PathVariable("department-id") Integer departmentId) {
+    public void removeDepartment(@PathVariable("department-id") Long departmentId) {
         departmentService.removeDepart(departmentId);
     }
 

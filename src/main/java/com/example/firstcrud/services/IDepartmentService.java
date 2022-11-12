@@ -9,12 +9,12 @@ import java.util.Optional;
 public interface IDepartmentService {
     Departement addDepartement(Departement departement);
 
-    void removeDepart(Integer idDepartment);
+    void removeDepart(Long idDepartment);
 
     Departement updateDep(Departement departement);
 
     List<Departement> retreiveAllDep();
 
-    Departement retrieveDepartment(Integer id);
+    Departement retrieveDepartment(Long id);
 
 }
