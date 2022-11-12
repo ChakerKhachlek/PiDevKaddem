@@ -1,10 +1,12 @@
 package com.example.firstcrud.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-public class Departement {
+@Table(name="Departments")
+public class Departement implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDepart;
