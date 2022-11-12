@@ -22,7 +22,7 @@ public class ContactController {
     }
 
     @GetMapping("/retrieve-contrat/{contrat-id}")
-    public Optional<Contrat> getContratById(@PathVariable("contrat-id") Integer contratId) {
+    public Optional<Contrat> getContratById(@PathVariable("contrat-id") Long contratId) {
         return contratService.retrieveContrat(contratId);
     }
 
@@ -34,7 +34,7 @@ public class ContactController {
     }
 
     @DeleteMapping("/remove-contrat/{contrat-id}")
-    public void removecontrat(@PathVariable("contrat-id") Integer contratID) {
+    public void removecontrat(@PathVariable("contrat-id") Long contratID) {
         contratService.removeContrat(contratID);
     }
 

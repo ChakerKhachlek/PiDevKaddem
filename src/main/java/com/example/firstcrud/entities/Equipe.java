@@ -11,7 +11,7 @@ public class Equipe {
     private String nomEquipe;
     @Enumerated(EnumType.STRING)
     private Niveau niveau;
-    @ManyToMany(mappedBy = "equipe",cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "equipes",cascade = CascadeType.ALL)
     private Set<Etudiant> etudiants ;
 
     @OneToOne(cascade = CascadeType.ALL)
