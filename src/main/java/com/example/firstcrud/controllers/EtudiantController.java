@@ -27,13 +27,13 @@ public class EtudiantController {
 
     @Operation(description = "Add contracts to etudiant")
     @PostMapping("/add-contrats/{id-etudiant}")
-    public void ajouterEtaffecterListeboutiques(@RequestBody List<Contrat> lc, @PathVariable("id-etudiant") Integer idEtudiant){
+    public void ajouterEtaffecterListeContrats(@RequestBody List<Contrat> lc, @PathVariable("id-etudiant") Integer idEtudiant){
         etudiantService.addEtudiantContrats(lc, idEtudiant);
     }
 
     @Operation(description = "Retreive etudiant by ID")
     @GetMapping("/retrieve-etudiant/{etudiant-id}")
-    public Optional<Etudiant> retrieveEquipe(@PathVariable("etudiant-id") Integer etudiantId) {
+    public Optional<Etudiant> retrieveEtudiant(@PathVariable("etudiant-id") Integer etudiantId) {
         return etudiantService.retrieveEtudiant(etudiantId);
     }
 
