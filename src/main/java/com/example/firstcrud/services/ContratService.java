@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.Id;
 import java.util.Optional;
 
-@Service("Contrat Service")
+@Service("ContratService")
 public class ContratService implements IContratService{
 
     @Autowired
@@ -19,7 +19,7 @@ public class ContratService implements IContratService{
     }
 
     @Override
-    public void removeContrat(Id idContrat) {
+    public void removeContrat(Long idContrat) {
        contratRepository.deleteById(idContrat);
     }
 
@@ -34,7 +34,7 @@ public class ContratService implements IContratService{
     }
 
     @Override
-    public Optional<Contrat> retrieveContrat(Id idContrat) {
+    public Optional<Contrat> retrieveContrat(Long idContrat) {
         return contratRepository.findById(idContrat);
     }
 }

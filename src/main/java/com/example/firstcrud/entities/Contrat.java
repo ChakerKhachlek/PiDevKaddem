@@ -18,7 +18,7 @@ import java.util.Date;
 public class Contrat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idContrat;
+    private Long idContrat;
 
     @Temporal(TemporalType.DATE)
     private Date dateDebutContrat;

@@ -1,6 +1,13 @@
 package com.example.firstcrud.entities;
 
+import lombok.NoArgsConstructor;
+import org.hibernate.Hibernate;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -9,14 +16,14 @@ import java.util.Set;
 @Table( name= "etudiants")
 public class Etudiant implements Serializable {
     public Etudiant(String nom, String prenom, Option option) {
-        this.nom = nom;
-        this.prenom = prenom;
+        this.nomE = nom;
+        this.prenomE = prenom;
         this.option = option;
     }
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idEtudiant;
+    private Long idEtudiant;
     @Column(name="firstname")
     private String prenomE;
     @Column(name="lastname")
@@ -58,28 +65,28 @@ public class Etudiant implements Serializable {
         this.contrats = contrats;
     }
 
-    public Integer getId() {
-        return id;
+    public Long getId() {
+        return idEtudiant;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Long id) {
+        this.idEtudiant = id;
     }
 
     public String getNom() {
-        return nom;
+        return nomE;
     }
 
     public void setNom(String nomE) {
-        this.nom = nomE;
+        this.nomE = nomE;
     }
 
     public String getPrenom() {
-        return prenom;
+        return prenomE;
     }
 
     public void setPrenom(String prenomE) {
-        this.prenom = prenomE;
+        this.prenomE = prenomE;
     }
 
     public Option getOption() {
@@ -90,13 +97,7 @@ public class Etudiant implements Serializable {
         this.option = option;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Etudiant etudiant = (Etudiant) o;
-        return id != null && Objects.equals(id, etudiant.id);
-    }
+
 
     @Override
     public int hashCode() {

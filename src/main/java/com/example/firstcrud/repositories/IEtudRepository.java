@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface IEtudRepository extends CrudRepository<Etudiant,Integer> {
+public interface IEtudRepository extends CrudRepository<Etudiant,Long> {
 
-    @Query("select e from Etudiant e where upper(e.prenom) like upper(?1)")
+    @Query("select e from Etudiant e where upper(e.prenomE) like upper(?1)")
     List<Etudiant> findByPrenomELikeIgnoreCase(@Nullable String prenomE);
 
     @Query(

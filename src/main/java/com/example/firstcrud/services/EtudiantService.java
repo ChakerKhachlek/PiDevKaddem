@@ -29,7 +29,7 @@ public class EtudiantService implements IEtudiantService{
 
 
     @Override
-    public void removeEtudiant(Integer idEtud) {
+    public void removeEtudiant(Long idEtud) {
         etudRepository.deleteById(idEtud);
     }
 
@@ -44,12 +44,12 @@ public class EtudiantService implements IEtudiantService{
         return etudRepository.retreiveAllEtudiants();
     }
 
-    public Optional<Etudiant> retrieveEtudiant(Integer idEtudiant) {
+    public Optional<Etudiant> retrieveEtudiant(Long idEtudiant) {
         return etudRepository.findById(idEtudiant);
     }
 
     @Override
-    public void addEtudiantContrats(List<Contrat> lc, Integer idEtudiant) {
+    public void addEtudiantContrats(List<Contrat> lc, Long idEtudiant) {
         Etudiant etudiant = etudRepository.findById(idEtudiant).orElse(null);
         for (Contrat contrat : lc) {
             contrat.setEtudiant(etudiant);
