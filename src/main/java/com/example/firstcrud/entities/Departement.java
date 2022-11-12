@@ -1,6 +1,8 @@
 package com.example.firstcrud.entities;
 
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
@@ -11,6 +13,8 @@ import java.util.Set;
 @Entity
 @Table(name="departements")
 @EnableAutoConfiguration
+@AllArgsConstructor
+@NoArgsConstructor
 public class Departement implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +30,10 @@ public class Departement implements Serializable {
     @ManyToOne
     @JoinColumn(name = "univ_id")
     private Universite universite;
+
+    public Departement(String nomDepart){
+        this.nomDepart=nomDepart;
+    }
 
     public Universite getUniversite() {
         return universite;

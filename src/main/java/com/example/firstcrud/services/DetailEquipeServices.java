@@ -14,7 +14,7 @@ import java.util.Optional;
 @Service
 public class DetailEquipeServices implements IDetailEquipeService {
 
- private  final    IDetailEqRepository iDetailEqRepository;
+ private IDetailEqRepository iDetailEqRepository;
 
 
     @Override

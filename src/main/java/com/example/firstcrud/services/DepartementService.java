@@ -9,16 +9,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+@Service("DepartmentService")
+public class DepartementService implements IDepartmentService{
 
-public class DepartementService {
 
-
-    @Service("DepartmentService")
-    public class DepartmentService implements IDepartmentService{
 @Autowired
         private IDepartRepository departRepository;
 
-        public DepartmentService(IDepartRepository DEPRepository) {
+        public DepartementService(IDepartRepository DEPRepository) {
 
             this.departRepository =DEPRepository;
         }
@@ -53,6 +51,8 @@ public class DepartementService {
             return departRepository.findById(id).orElse(null);
         }
 
+
+
         public void removeDepartement(Integer idDep) {
             departRepository.deleteById(idDep);
         }
@@ -60,4 +60,4 @@ public class DepartementService {
     }
 
 
-}
+
