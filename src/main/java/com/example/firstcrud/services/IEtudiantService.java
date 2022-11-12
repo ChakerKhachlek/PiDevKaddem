@@ -16,7 +16,6 @@ public interface IEtudiantService {
     List<Etudiant> retreiveAllEtudiants();
 
     Optional<Etudiant> retrieveEtudiant(Integer idEtudiant);
-    Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat, Integer
-            idEquipe);
+
 
 }

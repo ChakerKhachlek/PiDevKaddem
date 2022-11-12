@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@AllArgsConstructor
 @RequestMapping("/contrat")
 public class ContactController {
     @Autowired
@@ -23,7 +22,7 @@ public class ContactController {
     }
 
     @GetMapping("/retrieve-contrat/{contrat-id}")
-    public Optional<Contrat> retrieveContrat(@PathVariable("contrat-id") Integer contratId) {
+    public Optional<Contrat> getContratById(@PathVariable("contrat-id") Integer contratId) {
         return contratService.retrieveContrat(contratId);
     }
 
@@ -36,7 +35,7 @@ public class ContactController {
 
     @DeleteMapping("/remove-contrat/{contrat-id}")
     public void removecontrat(@PathVariable("contrat-id") Integer contratID) {
-        contratService.retrieveContrat(contratID);
+        contratService.removeContrat(contratID);
     }
 
     @PutMapping("/update-contrat")

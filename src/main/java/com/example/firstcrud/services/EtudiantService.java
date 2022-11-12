@@ -48,18 +48,5 @@ public class EtudiantService implements IEtudiantService{
         return etudRepository.findById(idEtudiant);
     }
 
-    public Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat, Integer
-            idEquipe) {
-        Contrat contrat = contratRepository.findById(idContrat).orElse(null);
-        Equipe equipe = equipeRepository.findById(idEquipe).orElse(null);
-        //affectation etudiant to etudiant
-        contrat.setEtudiant(e);
-        //parceque le contrat c'est le parent
-        contratRepository.save(contrat);
-                //affectation etudiant to  equipe
-        e.getEquipes().add(equipe);
-        etudRepository.save(e);
-        return e;
-    }
 
 }
