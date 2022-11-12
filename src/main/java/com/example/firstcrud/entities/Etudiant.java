@@ -1,8 +1,13 @@
 package com.example.firstcrud.entities;
 
+
 import lombok.NoArgsConstructor;
 import org.hibernate.Hibernate;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,6 +16,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
+
 @EnableAutoConfiguration
 @NoArgsConstructor
 @Table( name= "etudiants")
@@ -21,6 +27,7 @@ public class Etudiant implements Serializable {
         this.option = option;
     }
     
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEtudiant;
@@ -107,7 +114,8 @@ public class Etudiant implements Serializable {
    @OneToMany(cascade = CascadeType.ALL ,mappedBy = "etudiant")
    private Set<Contrat> contrat;
    @ManyToMany(cascade = CascadeType.ALL)
-   private Set<Equipe> equipe ;
+
+   private Set<Equipe> equipes ;
 
 }
 
