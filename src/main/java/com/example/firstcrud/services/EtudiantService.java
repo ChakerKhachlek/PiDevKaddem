@@ -1,9 +1,11 @@
 package com.example.firstcrud.services;
 import com.example.firstcrud.entities.Contrat;
+
 import com.example.firstcrud.entities.Equipe;
 import com.example.firstcrud.entities.Etudiant;
 import com.example.firstcrud.repositories.IContratRepository;
 import com.example.firstcrud.repositories.IEquipeRepository;
+
 import com.example.firstcrud.repositories.IEtudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +18,11 @@ public class EtudiantService implements IEtudiantService{
 
     @Autowired
     private IEtudRepository etudRepository;
+
+    @Autowired
     private IContratRepository contratRepository;
-    private IEquipeRepository equipeRepository;
+    
+
     public EtudiantService(IEtudRepository etudRepository) {
         this.etudRepository = etudRepository;
     }
@@ -46,6 +51,15 @@ public class EtudiantService implements IEtudiantService{
 
     public Optional<Etudiant> retrieveEtudiant(Integer idEtudiant) {
         return etudRepository.findById(idEtudiant);
+    }
+
+    @Override
+    public void addEtudiantContrats(List<Contrat> lc, Integer idEtudiant) {
+        Etudiant etudiant = etudRepository.findById(idEtudiant).orElse(null);
+        for (Contrat contrat : lc) {
+            contrat.setEtudiant(etudiant);
+            contratRepository.save(contrat);
+        }
     }
 
 
