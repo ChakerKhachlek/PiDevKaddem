@@ -1,15 +1,6 @@
 package com.example.firstcrud.entities;
 
-import lombok.NoArgsConstructor;
-import org.hibernate.Hibernate;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.LinkedHashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -22,35 +13,20 @@ public class Etudiant implements Serializable {
         this.prenom = prenom;
         this.option = option;
     }
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idEtudiant", nullable = false)
-    private Integer id;
-
-    @Column(name = "nom", nullable = false)
-    private String nom;
-
-    @Column(name = "prenom", nullable = false)
-    private String prenom;
-
-
-
-    public enum Option{
-        GAMIX,SE,SIM,NIDS
-    }
+    private int idEtudiant;
+    @Column(name="firstname")
+    private String prenomE;
+    @Column(name="lastname")
+    private String nomE;
     @Enumerated(EnumType.STRING)
-    @Column(name = "etu_option", nullable = false)
     private Option option;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "departement_id")
+   @ManyToOne
     private Departement departement;
 
-
-
-
-    @OneToMany(mappedBy = "etudiant", orphanRemoval = true)
+    @OneToMany(mappedBy = "etudiant", orphanRemoval = true,cascade = CascadeType.ALL)
     private Set<Contrat> contrats = new LinkedHashSet<>();
 
     @ManyToMany(mappedBy = "etudiants")
@@ -126,4 +102,11 @@ public class Etudiant implements Serializable {
     public int hashCode() {
         return getClass().hashCode();
     }
+
+   @OneToMany(cascade = CascadeType.ALL ,mappedBy = "etudiant")
+   private Set<Contrat> contrat;
+   @ManyToMany(cascade = CascadeType.ALL)
+   private Set<Equipe> equipe ;
+
 }
+
