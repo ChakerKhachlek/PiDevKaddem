@@ -20,4 +20,5 @@ public interface IEtudiantService {
 
     void addEtudiantContrats(List<Contrat> lc, Integer idEtudiant);
 
+
 }

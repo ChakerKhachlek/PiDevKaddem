@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.Id;
+import java.util.List;
 import java.util.Optional;
 
 @Service("Contrat Service")
@@ -19,7 +20,7 @@ public class ContratService implements IContratService{
     }
 
     @Override
-    public void removeContrat(Id idContrat) {
+    public void removeContrat(int idContrat) {
        contratRepository.deleteById(idContrat);
     }
 
@@ -29,12 +30,12 @@ public class ContratService implements IContratService{
     }
 
     @Override
-    public Iterable<Contrat> retreiveAllContrats() {
-        return contratRepository.findAll();
+    public List<Contrat> retreiveAllContrats() {
+        return (List<Contrat>) contratRepository.findAll();
     }
 
     @Override
-    public Optional<Contrat> retrieveContrat(Id idContrat) {
+    public Optional<Contrat> retrieveContrat(int idContrat) {
         return contratRepository.findById(idContrat);
     }
 }

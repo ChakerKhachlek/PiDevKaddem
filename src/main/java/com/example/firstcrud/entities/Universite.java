@@ -1,5 +1,7 @@
 package com.example.firstcrud.entities;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;

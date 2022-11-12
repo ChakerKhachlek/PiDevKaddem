@@ -3,17 +3,18 @@ package com.example.firstcrud.services;
 import com.example.firstcrud.entities.Contrat;
 
 import javax.persistence.Id;
+import java.util.List;
 import java.util.Optional;
 
 public interface IContratService {
     Contrat addContrat(Contrat contrat);
 
-    void removeContrat(Id idContrat);
+    void removeContrat(int idContrat);
 
     Contrat updateContrat(Contrat contrat);
 
-    Iterable<Contrat> retreiveAllContrats();
+    List<Contrat> retreiveAllContrats();
 
-    Optional<Contrat> retrieveContrat(Id idContrat);
+    Optional<Contrat> retrieveContrat(int idContrat);
 
 }
