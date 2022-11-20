@@ -1,9 +1,11 @@
 package com.example.firstcrud.services;
 import com.example.firstcrud.entities.Contrat;
 
+import com.example.firstcrud.entities.Departement;
 import com.example.firstcrud.entities.Equipe;
 import com.example.firstcrud.entities.Etudiant;
 import com.example.firstcrud.repositories.IContratRepository;
+import com.example.firstcrud.repositories.IDepartRepository;
 import com.example.firstcrud.repositories.IEquipeRepository;
 
 import com.example.firstcrud.repositories.IEtudRepository;
@@ -21,6 +23,12 @@ public class EtudiantService implements IEtudiantService{
 
     @Autowired
     private IContratRepository contratRepository;
+
+    @Autowired
+    private IDepartRepository depRepository;
+
+    @Autowired
+    private IEquipeRepository equipeRepository;
     
 
     public EtudiantService(IEtudRepository etudRepository) {
@@ -53,6 +61,14 @@ public class EtudiantService implements IEtudiantService{
         return etudRepository.findById(idEtudiant);
     }
 
+    public void assignEtudiantToDepartement (Integer etudiantId, Integer departementId) {
+        Etudiant etudiant = etudRepository.findById(Long.valueOf(etudiantId)).get();
+        Departement departement=depRepository.findById(Long.valueOf(departementId)).get();
+        etudiant.setDepartement(departement);
+        etudRepository.save(etudiant);
+
+    };
+
     @Override
     public void addEtudiantContrats(List<Contrat> lc, Long idEtudiant) {
         Etudiant etudiant = etudRepository.findById(idEtudiant).orElse(null);
@@ -61,6 +77,25 @@ public class EtudiantService implements IEtudiantService{
             contratRepository.save(contrat);
         }
     }
+    @Override
+    public Etudiant addAndAssignEtudiantToEquipeAndContract(Etudiant e, Integer idContrat, Integer
+            idEquipe){
+        Contrat contrat=contratRepository.findById(Long.valueOf(idContrat)).get();
+        Equipe equipe=equipeRepository.findById(Long.valueOf(idEquipe)).get();
 
+        e.getEquipes().add(equipe);
+
+        Etudiant et =etudRepository.save(e);
+        contrat.setEtudiant(et);
+        contratRepository.save(contrat);
+        
+        return et;
+
+    };
+
+    @Override
+    public List<Etudiant> getEtudiantsByDepartement (Integer idDepartement){
+        return etudRepository.findByDepartement_IdDepart(idDepartement.longValue());
+    };
 
 }

@@ -1,6 +1,7 @@
 package com.example.firstcrud.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.NoArgsConstructor;
 import org.hibernate.Hibernate;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -36,14 +37,18 @@ public class Etudiant implements Serializable {
     @Column(name="lastname")
     private String nomE;
     @Enumerated(EnumType.STRING)
+    @Column(name="etuOption")
     private Option option;
-   @ManyToOne
+    @ManyToOne
+    @JsonIgnore
     private Departement departement;
 
-    @OneToMany(mappedBy = "etudiant", orphanRemoval = true,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "etudiant", orphanRemoval = true,cascade = CascadeType.PERSIST)
+    @JsonIgnore
     private Set<Contrat> contrats = new LinkedHashSet<>();
 
-    @ManyToMany(mappedBy = "etudiants")
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JsonIgnore
     private Set<Equipe> equipes = new LinkedHashSet<>();
 
     public Set<Equipe> getEquipes() {
@@ -53,6 +58,7 @@ public class Etudiant implements Serializable {
     public void setEquipes(Set<Equipe> equipes) {
         this.equipes = equipes;
     }
+
 
     public Departement getDepartement() {
         return departement;

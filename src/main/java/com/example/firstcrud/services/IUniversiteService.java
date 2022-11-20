@@ -1,6 +1,7 @@
 package com.example.firstcrud.services;
 
 import com.example.firstcrud.entities.Universite;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,4 +16,6 @@ public interface IUniversiteService {
     List<Universite> retrieveAllUniversites();
 
     Optional<Universite> retrieveUniversite(Long idUniv);
+
+
 }

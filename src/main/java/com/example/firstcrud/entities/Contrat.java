@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
@@ -11,11 +12,12 @@ import java.util.Date;
 @Setter
 @ToString
 @AllArgsConstructor
+@Table(name = "contrats")
 @NoArgsConstructor
 @EqualsAndHashCode
 //@Data : not adviced
 @FieldDefaults(level=AccessLevel.PRIVATE)
-public class Contrat {
+public class Contrat implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idContrat;
