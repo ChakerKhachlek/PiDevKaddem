@@ -32,7 +32,7 @@ public class EquipeService implements IEquipeService{
     }
 
     @Override
-    public Equipe retrieveEquipe(Integer idEquipe) {
+    public Equipe retrieveEquipe(Long idEquipe) {
         return iEquipeRepository.findById(idEquipe).get();
     }
 }

@@ -39,4 +39,46 @@ public class OpenApiConfig {
 
     }
 
+    @Bean
+    public GroupedOpenApi contratPublicApi() {
+        return GroupedOpenApi.builder()
+
+                .group("Only Contrat Management API")
+                .pathsToMatch("/contrat/**")
+                .pathsToExclude("**")
+                .build();
+
+    }
+
+    @Bean
+    public GroupedOpenApi departementPublicApi() {
+        return GroupedOpenApi.builder()
+
+                .group("Only Departement Management API")
+                .pathsToMatch("/Departement/**")
+                .pathsToExclude("**")
+                .build();
+
+    }
+
+    @Bean
+    public GroupedOpenApi universitePublicApi() {
+        return GroupedOpenApi.builder()
+
+                .group("Only Universite Management API")
+                .pathsToMatch("/universite/**")
+                .pathsToExclude("**")
+                .build();
+
+    }
+    @Bean
+    public GroupedOpenApi quipePublicApi() {
+        return GroupedOpenApi.builder()
+
+                .group("Only Equipe Management API")
+                .pathsToMatch("/equipe/**")
+                .pathsToExclude("**")
+                .build();
+
+    }
 }
