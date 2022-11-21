@@ -3,10 +3,11 @@ package com.example.firstcrud.services;
 import com.example.firstcrud.entities.Universite;
 import com.example.firstcrud.repositories.IUniversiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service("UniversiteService")
 public class UniversiteService implements IUniversiteService {
 
     @Autowired

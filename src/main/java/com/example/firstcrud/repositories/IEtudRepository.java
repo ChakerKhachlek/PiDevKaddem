@@ -7,6 +7,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface IEtudRepository extends CrudRepository<Etudiant,Long> {
@@ -18,6 +19,14 @@ public interface IEtudRepository extends CrudRepository<Etudiant,Long> {
             value = "SELECT * FROM ETUDIANTS ",
             nativeQuery = true)
     List<Etudiant> retreiveAllEtudiants();
+
+    @Query("select e from Etudiant e where upper(e.nomE) like upper(?1) and upper(e.prenomE) like upper(?2)")
+    Optional<Etudiant> findByNomELikeIgnoreCaseAndPrenomELikeIgnoreCase(String nomE, String prenomE);
+
+    @Query("select e from Etudiant e where e.departement.idDepart = ?1")
+    List<Etudiant> findByDepartement_IdDepart(Long idDepart);
+
+
 
 
 

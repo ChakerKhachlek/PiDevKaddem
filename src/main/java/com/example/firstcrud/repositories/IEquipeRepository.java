@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface IEquipeRepository extends CrudRepository<Equipe,Integer> {
+public interface IEquipeRepository extends CrudRepository<Equipe,Long> {
 
     @Override
     List<Equipe> findAll();

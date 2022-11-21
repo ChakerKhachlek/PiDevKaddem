@@ -1,7 +1,6 @@
 package com.example.firstcrud.controllers;
 
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 
 import com.example.firstcrud.entities.Contrat;
 
@@ -25,8 +24,8 @@ public class EtudiantController {
     @Operation(description = "Retrieve all etudiants")
     @GetMapping("/retrieve-all-etudiants")
     public List<Etudiant> getEtudiants() {
-        List<Etudiant> listEquipes = etudiantService.retreiveAllEtudiants();
-        return listEquipes;
+        List<Etudiant> listEtudiants = etudiantService.retreiveAllEtudiants();
+        return listEtudiants;
     }
 
     @Operation(description = "Add contracts to etudiant")
@@ -53,14 +52,30 @@ public class EtudiantController {
     @Operation(description = "Update etudiant")
     @PutMapping("/update-etudiant")
     public Etudiant updateEtudiant(@RequestBody Etudiant e) {
-        Etudiant equipe= etudiantService.updateEtudiant(e);
-        return equipe;
+        Etudiant etudiant= etudiantService.updateEtudiant(e);
+        return etudiant;
     }
-    
-    @Operation(description = "Remove etudiant")
+    @Operation(description = "Assign departement to etudiant")
+    @GetMapping("/assign-departement/{etudiant-id}/{departement-id}")
+    public void asignDepartementToEtudiant(@PathVariable("etudiant-id") Integer etudiantId ,@PathVariable("departement-id") Integer departmentId) {
+       etudiantService.assignEtudiantToDepartement(etudiantId, departmentId);
+    }
     @DeleteMapping("/remove-etudiant/{etudiant-id}")
     public void removeEtudiant(@PathVariable("etudiant-id") Long etudiantID) {
         etudiantService.removeEtudiant(etudiantID);
+    }
+
+    @Operation(description = "Add and assign etudiant to equipe and contrat")
+    @PostMapping("/add-assign-equipe-contrat/{equipe-id}/{contrat-id}")
+    public void addAndAssignEtudiantToEquipeAndContract(@PathVariable("equipe-id") Integer equipeId ,@PathVariable("contrat-id") Integer contratId,@RequestBody  Etudiant e) {
+        etudiantService.addAndAssignEtudiantToEquipeAndContract(e,contratId,equipeId);
+    }
+
+
+    @Operation(description = "Display all departement etudiants")
+    @GetMapping("/retreive-departement-etudiants/{departement-id}")
+    public List<Etudiant> getEtudiantsByDepartement(@PathVariable("departement-id") Integer departementId ) {
+        return  etudiantService.getEtudiantsByDepartement(departementId);
     }
 
 }

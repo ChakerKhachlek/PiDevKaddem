@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Entity
 
-@Table(name="detailsequipes")
+@Table(name="details_equipes")
 @EnableAutoConfiguration
 public class DetailEquipe implements Serializable {
 
