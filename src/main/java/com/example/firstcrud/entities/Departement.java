@@ -21,7 +21,9 @@ public class Departement implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDepart;
 
+
     @Column(name = "nom_departmenet",nullable = false)
+
     private String nomDepart;
 
     @OneToMany(mappedBy = "departement",cascade = CascadeType.ALL)
@@ -36,4 +38,6 @@ public class Departement implements Serializable {
 
     }
 }
+
+
 

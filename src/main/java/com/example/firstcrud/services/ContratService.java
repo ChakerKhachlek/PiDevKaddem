@@ -48,7 +48,8 @@ public class ContratService implements IContratService{
 
     public Optional<Contrat> retrieveContrat(Long idContrat) {
 
-        return contratRepository.findById(idContrat);
+
+       return contratRepository.findById(idContrat);
     }
 
 
