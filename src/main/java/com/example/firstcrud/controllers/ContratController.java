@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-@Tag(name = "Contract Management")
+@Tag(name="Gestion Contrat")
 @RestController
 @RequestMapping("/contrat")
 public class ContratController {
@@ -25,11 +25,9 @@ public class ContratController {
     }
 
     @GetMapping("/retrieve-contrat/{contrat-id}")
-    public Optional<Contrat> getContratById(@PathVariable("contrat-id") Long contratId) {
+    public Optional<Contrat> getContratById(@PathVariable("contrat-id") Integer contratId) {
         return contratService.retrieveContrat(contratId);
     }
-
-
 
 
     @PostMapping("/add-contrat")
@@ -39,7 +37,7 @@ public class ContratController {
     }
 
     @DeleteMapping("/remove-contrat/{contrat-id}")
-    public void removecontrat(@PathVariable("contrat-id") Long contratID) {
+    public void removecontrat(@PathVariable("contrat-id") Integer contratID) {
         contratService.removeContrat(contratID);
     }
 
@@ -48,23 +46,19 @@ public class ContratController {
         Contrat contrat= contratService.updateContrat(c);
         return contrat;
     }
-
-
-
-    @Operation(description = "Affect Contrat Etudiant")
-    @PostMapping("/affect-contrat-etudiant/{nom-e}/{prenom-e}")
-    public Contrat affectContratToEtudiant (@RequestBody Contrat c,@PathVariable("nom-e") String nomE,@PathVariable("prenom-e") String prenomE){
+    //Services Avancés
+    @PostMapping("/affect-contrat-etudiant/{nomE}/{prenomE}")
+    public Contrat affectContratToEtudiant (@RequestBody Contrat c,@PathVariable("nomE") String nomE,@PathVariable("prenomE") String prenomE){
         return contratService.affectContratToEtudiant(c,nomE,prenomE);
     }
-    @Operation(description = "Get chiffre affaire entre deux dates")
-    @GetMapping("/getChiffreAffaireEntreDeuxDate/{start}/{end}")
-    float getChiffreAffaireEntreDeuxDate(@PathVariable("start")@DateTimeFormat(pattern = "yyyy-MM-dd")  Date start, @PathVariable("end") @DateTimeFormat(pattern = "yyyy-MM-dd")  Date end){
-        return contratService.getChiffreAffaireEntreDeuxDate(start,end);
+    @GetMapping("/ChiffreAffaire-EntreDeuxDate/{startDate}/{endDate}")
+    float getChiffreAffaireEntreDeuxDate(@PathVariable("startDate")@DateTimeFormat(pattern = "yyyy-MM-dd")  Date startDate, @PathVariable("endDate") @DateTimeFormat(pattern = "yyyy-MM-dd")  Date endDate){
+        return contratService.getChiffreAffaireEntreDeuxDate(startDate,endDate);
     }
-    @Operation(description = "Contrats between 2 dates")
-    @GetMapping("/contratBetween2dates/{start}/{end}")
-    List<Contrat> contratBetween2dates(@PathVariable("start") @DateTimeFormat(pattern = "yyyy-MM-dd")  Date start,@PathVariable("end") @DateTimeFormat(pattern = "yyyy-MM-dd")  Date end){
-        return contratService.contratBetween2dates(start,end);
+    @GetMapping("/nb-contrats-valides/{startDate}/{endDate}")
+    Integer nbContratsValides(@PathVariable("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd")  Date startDate,@PathVariable("endDate") @DateTimeFormat(pattern = "yyyy-MM-dd")  Date endDate){
+        return contratService.nbContratsValides(startDate,endDate);
     }
+
 }
 
