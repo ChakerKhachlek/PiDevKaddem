@@ -1,10 +1,12 @@
 package com.example.firstcrud.entities;
 
+
+import com.example.firstcrud.entities.Etudiant;
+import com.example.firstcrud.entities.Specialite;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 @Entity
@@ -12,15 +14,14 @@ import java.util.Date;
 @Setter
 @ToString
 @AllArgsConstructor
-@Table(name = "contrats")
 @NoArgsConstructor
 @EqualsAndHashCode
 //@Data : not adviced
 @FieldDefaults(level=AccessLevel.PRIVATE)
-public class Contrat implements Serializable {
+public class Contrat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idContrat;
+    private int idContrat;
 
     @Temporal(TemporalType.DATE)
     private Date dateDebutContrat;
@@ -33,7 +34,7 @@ public class Contrat implements Serializable {
     private Boolean archive;
 
     private int montantContrat;
-    @ManyToOne(cascade =CascadeType.ALL)
+    @ManyToOne(cascade =CascadeType.PERSIST)
     private Etudiant etudiant;
 }
 

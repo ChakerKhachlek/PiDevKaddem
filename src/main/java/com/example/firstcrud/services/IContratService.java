@@ -10,20 +10,19 @@ import java.util.Optional;
 public interface IContratService {
     Contrat addContrat(Contrat contrat);
 
-
-    void removeContrat(Long idContrat);
-
+    void removeContrat(int idContrat);
 
     Contrat updateContrat(Contrat contrat);
 
     List<Contrat> retreiveAllContrats();
 
+    Optional<Contrat> retrieveContrat(int idContrat);
 
-    Optional<Contrat> retrieveContrat(Long idContrat);
-
+    //Services Avancés
 
     Contrat affectContratToEtudiant (Contrat ce, String nomE,String prenomE);
     float getChiffreAffaireEntreDeuxDate(Date startDate, Date endDate);
-    List<Contrat> contratBetween2dates(Date startDate, Date endDate);
+
+    Integer nbContratsValides(Date startDate, Date endDate);
 
 }
