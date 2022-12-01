@@ -35,4 +35,5 @@ public class EquipeService implements IEquipeService{
     public Equipe retrieveEquipe(Long idEquipe) {
         return iEquipeRepository.findById(idEquipe).get();
     }
+
 }

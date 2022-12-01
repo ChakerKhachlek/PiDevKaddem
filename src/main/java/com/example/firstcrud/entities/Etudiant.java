@@ -27,7 +27,7 @@ public class Etudiant implements Serializable {
         this.prenomE = prenom;
         this.option = option;
     }
-    
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,7 +40,9 @@ public class Etudiant implements Serializable {
     @Column(name="etuOption")
     private Option option;
     @ManyToOne
+
     @JsonIgnore
+
     private Departement departement;
 
     @OneToMany(mappedBy = "etudiant", orphanRemoval = true,cascade = CascadeType.PERSIST)
@@ -120,4 +122,3 @@ public class Etudiant implements Serializable {
 
 
 }
-
