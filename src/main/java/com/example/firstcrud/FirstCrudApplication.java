@@ -6,6 +6,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @SpringBootApplication
+
 public class FirstCrudApplication {
 
     public static void main(String[] args) {
