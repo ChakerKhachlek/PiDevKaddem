@@ -18,6 +18,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/equipe")
+@CrossOrigin("*")
 public class EquipeController {
     IEquipeService equipeService;
 
@@ -46,6 +47,11 @@ public class EquipeController {
     public Equipe updateEquipe(@RequestBody Equipe e) {
         Equipe equipe= equipeService.updateEquipe(e);
         return equipe;
+    }
+
+    @DeleteMapping("/remove-equipe/{equipe-id}")
+    public void removeEquipe(@PathVariable("equipe-id") Long equipeID) {
+        equipeService.deleteEquipe(equipeID);
     }
 
 }

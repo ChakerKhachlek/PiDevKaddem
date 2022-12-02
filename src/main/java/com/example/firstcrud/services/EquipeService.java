@@ -36,4 +36,12 @@ public class EquipeService implements IEquipeService{
         return iEquipeRepository.findById(idEquipe).get();
     }
 
+    @Override
+    public Void deleteEquipe(Long idEquipe) {
+
+         iEquipeRepository.deleteById(idEquipe);
+        return null;
+    }
+
+
 }

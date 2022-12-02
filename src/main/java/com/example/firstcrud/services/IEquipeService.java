@@ -13,4 +13,6 @@ public interface IEquipeService {
     Equipe updateEquipe (Equipe e);
 
     Equipe retrieveEquipe (Long idEquipe);
+
+    Void deleteEquipe (Long idEquipe);
 }
