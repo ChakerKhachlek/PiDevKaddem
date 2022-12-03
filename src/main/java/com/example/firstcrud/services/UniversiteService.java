@@ -23,7 +23,7 @@ public class UniversiteService implements IUniversiteService {
     }
 
     @Override
-    public void removeUniversite(Long idUniv) {
+    public void deleteUniversiteByID(Long idUniv) {
         univRepository.deleteById(idUniv);
     }
 
@@ -33,12 +33,12 @@ public class UniversiteService implements IUniversiteService {
     }
 
     @Override
-    public List<Universite> retrieveAllUniversites() {
-        return univRepository.retrieveAllUniversites();
+    public List<Universite> getAllUniversites() {
+        return (List<Universite>) univRepository.findAll();
     }
 
     @Override
-    public Optional<Universite> retrieveUniversite(Long idUniv) {
+    public Optional<Universite> getUniversiteByID(Long idUniv) {
         return univRepository.findById(idUniv);
     }
 }
