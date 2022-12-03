@@ -31,6 +31,7 @@ public class EquipeController {
     }
     @Operation(description = "Retreive equipe by id")
     @GetMapping("/retrieve-equipe/{equipe-id}")
+
     public Equipe retrieveEquipe(@PathVariable("equipe-id") Integer equipeId) {
         return equipeService.retrieveEquipe(Long.valueOf(equipeId));
     }
