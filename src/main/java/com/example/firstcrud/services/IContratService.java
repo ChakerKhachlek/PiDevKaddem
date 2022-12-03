@@ -3,6 +3,7 @@ package com.example.firstcrud.services;
 import com.example.firstcrud.entities.Contrat;
 
 import javax.persistence.Id;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -26,4 +27,5 @@ public interface IContratService {
     float getChiffreAffaireEntreDeuxDate(Date startDate, Date endDate);
     List<Contrat> contratBetween2dates(Date startDate, Date endDate);
 
+    String retrieveStatusContrat() throws ParseException;
 }

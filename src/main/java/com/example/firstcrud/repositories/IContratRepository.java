@@ -16,6 +16,12 @@ public interface IContratRepository extends CrudRepository<Contrat,Long> {
     @Query("select c from Contrat c where   c.dateDebutContrat>=?1 and c.dateFinContrat<=?2 and c.archive=false")
     List<Contrat> valideContratsBetween2dates(Date startDate, Date endDate);
 
+    @Query("select c from Contrat c where c.dateFinContrat between ?1 and ?2")
+    List<Contrat> findByDateFinContratBetween(Date dateFinContratStart, Date dateFinContratEnd);
+
+
     @Query("select  SUM(c.montantContrat) from Contrat c where c.dateFinContrat<=?2 and c.dateDebutContrat>=?1 and c.archive=false")
     float getChiffreAffaireEntreDeuxDate(Date startDate, Date endDate);
+
+
 }

@@ -33,7 +33,7 @@ public class OpenApiConfig {
         return GroupedOpenApi.builder()
 
                 .group("Only Etudiant Management API")
-                                .pathsToMatch("/etudiant/**")
+                                .pathsToMatch("/api/etudiant/**")
                                 .pathsToExclude("**")
                                 .build();
 

@@ -17,7 +17,8 @@ import java.util.Optional;
 @Tag(name = "Etudiant Management")
 @RestController
 @AllArgsConstructor
-@RequestMapping("/etudiant")
+@RequestMapping("/api/etudiant")
+@CrossOrigin(origins = "http://localhost:4200/")
 public class EtudiantController {
     IEtudiantService etudiantService;
 

@@ -5,18 +5,19 @@ import com.example.firstcrud.entities.Etudiant;
 import com.example.firstcrud.entities.Specialite;
 import com.example.firstcrud.repositories.IContratRepository;
 import com.example.firstcrud.repositories.IEtudRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
+import java.util.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
 
 @Service("ContratService")
 public class ContratService implements IContratService{
 
+    Logger logger= LoggerFactory.getLogger(ContratService.class);
     @Autowired
     IContratRepository contratRepository;
 
@@ -96,5 +97,15 @@ public class ContratService implements IContratService{
     @Override
     public List<Contrat> contratBetween2dates(Date startDate, Date endDate) {
         return  contratRepository.valideContratsBetween2dates(startDate,endDate);
+    }
+
+    @Scheduled(cron ="* * 15 * * *")
+    public String retrieveStatusContrat(){
+        Calendar cal = Calendar.getInstance();  
+        Date today = cal.getTime();
+        cal.add(Calendar.DAY_OF_MONTH, 15);
+        String res=contratRepository.findByDateFinContratBetween(today,cal.getTime()).toString();
+        logger.warn(res);
+        return res;
     }
 }
