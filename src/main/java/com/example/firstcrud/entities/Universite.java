@@ -1,34 +1,32 @@
 package com.example.firstcrud.entities;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
-@Table(name="universite")
+@Table(name="universites")
 @EnableAutoConfiguration
-public class Universite {
+@Getter
+@Setter
+public class Universite implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_univ", nullable = false)
     private Long idUniv;
 
-    @Column(name = "nomUniv", nullable = false)
+
+    @Column(name = "nom_universite")
     private String nomUniv;
 
-    public Long getIdUniv() {
-        return idUniv;
-    }
 
-    public void setIdUniv(Long idUniv) {
-        this.idUniv = idUniv;
-    }
 
-    public String getNomUniv() {
-        return nomUniv;
-    }
+    @OneToMany(mappedBy = "universite", orphanRemoval = true)
+    private Set<Departement> departements = new LinkedHashSet<>();
 
-    public void setNomUniv(String nomUniv) {
-        this.nomUniv = nomUniv;
-    }
 }

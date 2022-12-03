@@ -1,60 +1,43 @@
 package com.example.firstcrud.entities;
 
-
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.LinkedHashSet;
+
+import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name="departements")
-@EnableAutoConfiguration
-public class Departement {
+@Table(name="departments")
+@AllArgsConstructor
+@Getter
+@Setter
+public class Departement implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_departement", nullable = false)
-    private Integer idDepartement;
+    private Long idDepart;
 
-    @Column(name = "nomDepart", nullable = false)
+
+    @Column(name = "nom_departmenet",nullable = false)
+
     private String nomDepart;
 
-    @OneToMany(mappedBy = "departement", orphanRemoval = true)
-    private Set<Etudiant> etudiants = new LinkedHashSet<>();
+    @OneToMany(mappedBy = "departement",cascade = CascadeType.ALL)
+    private Set<Etudiant> etudiants;
 
     @ManyToOne
-    @JoinColumn(name = "univ_id")
+    @JoinColumn(name = "universite_id")
+    @JsonIgnore
     private Universite universite;
 
-    public Universite getUniversite() {
-        return universite;
-    }
+    public Departement() {
 
-    public void setUniversite(Universite universite) {
-        this.universite = universite;
-    }
-
-    public Set<Etudiant> getEtudiants() {
-        return etudiants;
-    }
-
-    public void setEtudiants(Set<Etudiant> etudiants) {
-        this.etudiants = etudiants;
-    }
-
-    public Integer getIdDepartement() {
-        return idDepartement;
-    }
-
-    public void setIdDepartement(Integer idDepartement) {
-        this.idDepartement = idDepartement;
-    }
-
-    public String getNomDepart() {
-        return nomDepart;
-    }
-
-    public void setNomDepart(String nomDepart) {
-        this.nomDepart = nomDepart;
     }
 }
+
+
+

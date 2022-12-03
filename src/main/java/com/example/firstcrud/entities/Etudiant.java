@@ -1,10 +1,14 @@
 package com.example.firstcrud.entities;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.NoArgsConstructor;
 import org.hibernate.Hibernate;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,45 +17,40 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
+
 @EnableAutoConfiguration
 @NoArgsConstructor
 @Table( name= "etudiants")
 public class Etudiant implements Serializable {
     public Etudiant(String nom, String prenom, Option option) {
-        this.nom = nom;
-        this.prenom = prenom;
+        this.nomE = nom;
+        this.prenomE = prenom;
         this.option = option;
     }
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idEtudiant", nullable = false)
-    private Integer id;
-
-    @Column(name = "nom", nullable = false)
-    private String nom;
-
-    @Column(name = "prenom", nullable = false)
-    private String prenom;
-
-
-
-    public enum Option{
-        GAMIX,SE,SIM,NIDS
-    }
+    private Long idEtudiant;
+    @Column(name="firstname")
+    private String prenomE;
+    @Column(name="lastname")
+    private String nomE;
     @Enumerated(EnumType.STRING)
-    @Column(name = "etu_option", nullable = false)
+    @Column(name="etuOption")
     private Option option;
+    @ManyToOne
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "departement_id")
+    @JsonIgnore
+
     private Departement departement;
 
-
-    @OneToMany(mappedBy = "etudiant", orphanRemoval = true)
+    @OneToMany(mappedBy = "etudiant", orphanRemoval = true,cascade = CascadeType.PERSIST)
+    @JsonIgnore
     private Set<Contrat> contrats = new LinkedHashSet<>();
 
-    @ManyToMany(mappedBy = "etudiants")
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JsonIgnore
     private Set<Equipe> equipes = new LinkedHashSet<>();
 
     public Set<Equipe> getEquipes() {
@@ -61,6 +60,7 @@ public class Etudiant implements Serializable {
     public void setEquipes(Set<Equipe> equipes) {
         this.equipes = equipes;
     }
+
 
     public Departement getDepartement() {
         return departement;
@@ -80,28 +80,28 @@ public class Etudiant implements Serializable {
         this.contrats = contrats;
     }
 
-    public Integer getId() {
-        return id;
+    public Long getId() {
+        return idEtudiant;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Long id) {
+        this.idEtudiant = id;
     }
 
     public String getNom() {
-        return nom;
+        return nomE;
     }
 
     public void setNom(String nomE) {
-        this.nom = nomE;
+        this.nomE = nomE;
     }
 
     public String getPrenom() {
-        return prenom;
+        return prenomE;
     }
 
     public void setPrenom(String prenomE) {
-        this.prenom = prenomE;
+        this.prenomE = prenomE;
     }
 
     public Option getOption() {
@@ -112,16 +112,13 @@ public class Etudiant implements Serializable {
         this.option = option;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Etudiant etudiant = (Etudiant) o;
-        return id != null && Objects.equals(id, etudiant.id);
-    }
+
 
     @Override
     public int hashCode() {
         return getClass().hashCode();
     }
+
+
+
 }
