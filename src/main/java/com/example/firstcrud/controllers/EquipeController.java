@@ -1,9 +1,11 @@
 package com.example.firstcrud.controllers;
 
 
+import com.example.firstcrud.entities.DetailEquipe;
 import com.example.firstcrud.entities.Equipe;
 import com.example.firstcrud.entities.Universite;
 import com.example.firstcrud.repositories.IEquipeRepository;
+import com.example.firstcrud.services.IDetailEquipeService;
 import com.example.firstcrud.services.IEquipeService;
 import com.example.firstcrud.services.IUniversiteService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -21,6 +23,7 @@ import java.util.List;
 @CrossOrigin("*")
 public class EquipeController {
     IEquipeService equipeService;
+    IDetailEquipeService detailEquipeService;
 
 
     @Operation(description = "Retreive all equipes")
@@ -42,6 +45,19 @@ public class EquipeController {
         Equipe equipe= equipeService.addEquipe(e);
         return equipe;
     }
+
+    @Operation(description = "Add equipe and det")
+    @PostMapping("/add-equipe-detail")
+    public void addEquipe(@RequestBody  Equipe e, DetailEquipe de) {
+        detailEquipeService.addDeteq(de);
+        Equipe equipe = new Equipe();
+        equipe.setDetailEquipe(de);
+        equipeService.addEquipe(e);
+
+
+    }
+
+
 
     @Operation(description = "Update equipe")
     @PutMapping("/update-equipe")
