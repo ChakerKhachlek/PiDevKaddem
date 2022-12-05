@@ -18,5 +18,6 @@ public class DetailEquipe implements Serializable {
     private String thematique;
 
     @OneToOne(mappedBy = "detailEquipe",cascade= CascadeType.ALL)
+    @JoinColumn(name = "equipe_id", referencedColumnName = "idEquipe")
     private Equipe equipe ;
 }

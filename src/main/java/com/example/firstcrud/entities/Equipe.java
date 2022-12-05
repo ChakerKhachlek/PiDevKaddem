@@ -26,7 +26,7 @@ public class Equipe {
 
 
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @OneToOne(cascade = CascadeType.REFRESH)
     private DetailEquipe detailEquipe;
 
     @JsonIgnore

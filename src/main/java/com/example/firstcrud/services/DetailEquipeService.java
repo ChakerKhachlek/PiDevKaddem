@@ -41,4 +41,9 @@ public class DetailEquipeService implements IDetailEquipeService {
     public Optional<DetailEquipe> retrieveDetEq(Long idDeteq) {
         return Optional.empty();
     }
+
+    @Override
+    public DetailEquipe getDetailEquipeByEquipeId(Long idEquipe) {
+        return DetailEqRepository.getDetailEquipeByEquipe_IdEquipe(idEquipe);
+    }
 }

@@ -18,4 +18,6 @@ public interface IEquipeService {
     Equipe retrieveEquipe (Long idEquipe);
 
     Void deleteEquipe (Long idEquipe);
+
+
 }
