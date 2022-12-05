@@ -34,8 +34,8 @@ public class DetailEquipeController {
 
     @PostMapping("/add-detailequipe")
     public DetailEquipe addDetailEquipe(@RequestBody  DetailEquipe de) {
-        DetailEquipe deteq=detailEquipeService.addDeteq(de);
-        return deteq;
+
+        return detailEquipeService.addDeteq(de);
     }
 
     @DeleteMapping("/remove-detailEquipe/{DetailEquipe-id}")
