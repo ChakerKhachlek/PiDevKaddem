@@ -14,4 +14,8 @@ public interface IDetailEqRepository extends CrudRepository<DetailEquipe,Long> {
     List<DetailEquipe> retreiveDetailEquipe();
 
 
+
+    DetailEquipe getDetailEquipeByEquipe_IdEquipe(Long id);
+
+
 }

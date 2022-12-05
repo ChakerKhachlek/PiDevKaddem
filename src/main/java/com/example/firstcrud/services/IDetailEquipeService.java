@@ -17,4 +17,6 @@ public interface IDetailEquipeService {
 
     Optional<DetailEquipe> retrieveDetEq(Long idDeteq);
 
+    DetailEquipe getDetailEquipeByEquipeId (Long idEquipe);
+
 }
