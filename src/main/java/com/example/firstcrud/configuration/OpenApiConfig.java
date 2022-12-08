@@ -81,4 +81,15 @@ public class OpenApiConfig {
                 .build();
 
     }
+
+    @Bean
+    public GroupedOpenApi DetailEquipePublicApi() {
+        return GroupedOpenApi.builder()
+
+                .group("Only DetailEquipe Management API")
+                .pathsToMatch("/DetailEquipe/**")
+                .pathsToExclude("**")
+                .build();
+
+    }
 }

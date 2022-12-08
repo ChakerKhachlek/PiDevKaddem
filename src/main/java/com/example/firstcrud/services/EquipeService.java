@@ -1,6 +1,8 @@
 package com.example.firstcrud.services;
 
+import com.example.firstcrud.entities.DetailEquipe;
 import com.example.firstcrud.entities.Equipe;
+import com.example.firstcrud.repositories.IDetailEqRepository;
 import com.example.firstcrud.repositories.IEquipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,9 @@ public class EquipeService implements IEquipeService{
 
     @Autowired
     private IEquipeRepository iEquipeRepository;
+
+    @Autowired
+    private IDetailEqRepository iDetailEqRepository;
 
     @Override
     public List<Equipe> retrieveAllEquipes() {
@@ -27,6 +32,13 @@ public class EquipeService implements IEquipeService{
     }
 
     @Override
+    public void addEquipeD(Equipe e, DetailEquipe de) {
+        e.setDetailEquipe(de);
+        iDetailEqRepository.save(de);
+        iEquipeRepository.save(e);
+    }
+
+    @Override
     public Equipe updateEquipe(Equipe e) {
         return iEquipeRepository.save(e);
     }
@@ -35,5 +47,13 @@ public class EquipeService implements IEquipeService{
     public Equipe retrieveEquipe(Long idEquipe) {
         return iEquipeRepository.findById(idEquipe).get();
     }
+
+    @Override
+    public Void deleteEquipe(Long idEquipe) {
+
+         iEquipeRepository.deleteById(idEquipe);
+        return null;
+    }
+
 
 }

@@ -1,9 +1,12 @@
 package com.example.firstcrud.controllers;
 
 
+import com.example.firstcrud.entities.DetailEquipe;
 import com.example.firstcrud.entities.Equipe;
 import com.example.firstcrud.entities.Universite;
+import com.example.firstcrud.repositories.IDetailEqRepository;
 import com.example.firstcrud.repositories.IEquipeRepository;
+import com.example.firstcrud.services.IDetailEquipeService;
 import com.example.firstcrud.services.IEquipeService;
 import com.example.firstcrud.services.IUniversiteService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,9 +21,14 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/equipe")
+
 @CrossOrigin(origins = "http://localhost:4200/")
+
 public class EquipeController {
     IEquipeService equipeService;
+    IDetailEquipeService detailEquipeService;
+
+    IDetailEqRepository detailEqRepository;
 
 
     @Operation(description = "Retreive all equipes")
@@ -31,6 +39,7 @@ public class EquipeController {
     }
     @Operation(description = "Retreive equipe by id")
     @GetMapping("/retrieve-equipe/{equipe-id}")
+
     public Equipe retrieveEquipe(@PathVariable("equipe-id") Integer equipeId) {
         return equipeService.retrieveEquipe(Long.valueOf(equipeId));
     }
@@ -42,11 +51,28 @@ public class EquipeController {
         return equipe;
     }
 
+    @Operation(description = "Add equipe and det")
+    @PostMapping("/add-equipe-detail")
+    public void addEquipe(@RequestBody  Equipe e, DetailEquipe de) {
+        detailEqRepository.save(de);
+        e.setDetailEquipe(de);
+        equipeService.addEquipe(e);
+
+
+    }
+
+
+
     @Operation(description = "Update equipe")
     @PutMapping("/update-equipe")
     public Equipe updateEquipe(@RequestBody Equipe e) {
         Equipe equipe= equipeService.updateEquipe(e);
         return equipe;
+    }
+
+    @DeleteMapping("/remove-equipe/{equipe-id}")
+    public void removeEquipe(@PathVariable("equipe-id") Long equipeID) {
+        equipeService.deleteEquipe(equipeID);
     }
 
 }

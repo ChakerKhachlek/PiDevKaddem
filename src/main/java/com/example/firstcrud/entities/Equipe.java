@@ -1,5 +1,6 @@
 package com.example.firstcrud.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,9 +25,11 @@ public class Equipe {
     private Niveau niveau;
 
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+
+    @OneToOne(cascade = CascadeType.ALL)
     private DetailEquipe detailEquipe;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "equipes",cascade = CascadeType.REMOVE)
     private Set<Etudiant> etudiants = new LinkedHashSet<>();
 
