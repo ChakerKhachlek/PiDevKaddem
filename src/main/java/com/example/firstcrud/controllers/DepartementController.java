@@ -16,6 +16,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @EnableAutoConfiguration
 @RequestMapping("/Departement")
+@CrossOrigin(origins = "http://localhost:4200/")
 public class DepartementController {
     IDepartmentService departmentService;
 
