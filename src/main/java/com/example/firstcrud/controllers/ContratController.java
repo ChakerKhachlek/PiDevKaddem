@@ -14,6 +14,7 @@ import java.util.Optional;
 @Tag(name = "Contract Management")
 @RestController
 @RequestMapping("/contrat")
+@CrossOrigin(origins = "http://localhost:4200/")
 public class ContratController {
     @Autowired
     IContratService contratService;

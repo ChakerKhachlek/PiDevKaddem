@@ -8,16 +8,21 @@ import com.example.firstcrud.services.IUniversiteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
+
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 import java.util.Optional;
+
 
 @Tag(name = "Universite Management")
 @RestController
 @AllArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200/")
 @RequestMapping("/universite")
+@CrossOrigin(origins = "http://localhost:4200/")
 public class UniversiteController {
     IUniversiteService univService;
     IUniversiteRepository univRepository;

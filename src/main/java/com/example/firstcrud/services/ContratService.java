@@ -99,7 +99,7 @@ public class ContratService implements IContratService{
         return  contratRepository.valideContratsBetween2dates(startDate,endDate);
     }
 
-    @Scheduled(cron ="* * 15 * * *")
+    @Scheduled(cron ="0/15 * * * * *")
     public String retrieveStatusContrat(){
         Calendar cal = Calendar.getInstance();  
         Date today = cal.getTime();
