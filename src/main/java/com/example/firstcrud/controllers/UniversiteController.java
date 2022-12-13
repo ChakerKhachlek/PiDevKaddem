@@ -22,7 +22,6 @@ import java.util.Optional;
 @AllArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200/")
 @RequestMapping("/universite")
-@CrossOrigin(origins = "http://localhost:4200/")
 public class UniversiteController {
     IUniversiteService univService;
     IUniversiteRepository univRepository;

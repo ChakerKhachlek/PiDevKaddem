@@ -24,4 +24,6 @@ public interface IContratRepository extends CrudRepository<Contrat,Long> {
     float getChiffreAffaireEntreDeuxDate(Date startDate, Date endDate);
 
 
+
+
 }
