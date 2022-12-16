@@ -10,6 +10,8 @@ import com.example.firstcrud.repositories.IEquipeRepository;
 
 import com.example.firstcrud.repositories.IEtudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +31,10 @@ public class EtudiantService implements IEtudiantService{
 
     @Autowired
     private IEquipeRepository equipeRepository;
-    
+
+
+    @Autowired
+    private JavaMailSender javaMailSender;
 
     public EtudiantService(IEtudRepository etudRepository) {
         this.etudRepository = etudRepository;
@@ -91,11 +96,39 @@ public class EtudiantService implements IEtudiantService{
         
         return et;
 
-    };
+    }
 
     @Override
     public List<Etudiant> getEtudiantsByDepartement (Integer idDepartement){
         return etudRepository.findByDepartement_IdDepart(idDepartement.longValue());
-    };
+    }
+    private void sendMail(String to, String from, String subject, String message, JavaMailSender javaMailSender) {
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setTo(to);
+        msg.setSubject(subject);
+
+        msg.setFrom(from);
+        msg.setText(message);
+        javaMailSender.send(msg);
+    }
+
+    @Override
+    public void notifierEtudiant(Long idEtudiant,String message) {
+
+        Etudiant etudiant = etudRepository.findById(idEtudiant).orElse(null);
+
+        if (etudiant!= null && etudiant.getEmail()!=null && !etudiant.getEmail().equals("")){
+
+
+            String to = etudiant.getEmail();
+            String from = "spring.pidevkaddem@gmail.com";
+            String subject = "Scolarité" ;
+
+
+            sendMail(to ,from ,subject ,message ,javaMailSender);
+        }
+
+    }
+
 
 }

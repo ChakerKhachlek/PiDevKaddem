@@ -79,4 +79,10 @@ public class EtudiantController {
         return  etudiantService.getEtudiantsByDepartement(departementId);
     }
 
+    @Operation(description = "Send message to etudiant email")
+    @GetMapping("/notifieretudiant/{idEtudiant}")
+    public void notifierEtudiant  (@PathVariable("idEtudiant") Long idEtudiant,@RequestParam String message){
+        etudiantService.notifierEtudiant(idEtudiant,message);
+    }
+
 }

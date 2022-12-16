@@ -20,7 +20,7 @@ import java.util.Optional;
 @Tag(name = "Universite Management")
 @RestController
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:4200/")
+
 @RequestMapping("/universite")
 @CrossOrigin(origins = "http://localhost:4200/")
 public class UniversiteController {

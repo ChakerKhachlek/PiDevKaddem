@@ -17,7 +17,7 @@ public class PerformanceAspect {
         long start = System.currentTimeMillis();
         Object obj = pjp.proceed();
         long elapsedTime = System.currentTimeMillis() - start;
-        log.info("Method execution time: " + elapsedTime
+        log.info("Method "+pjp.getSignature().getName()+" execution time: " + elapsedTime
                 +"milliseconds.");
         return obj;
     }
