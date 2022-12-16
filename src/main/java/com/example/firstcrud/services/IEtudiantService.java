@@ -27,5 +27,7 @@ public interface IEtudiantService {
 
     List<Etudiant> getEtudiantsByDepartement (Integer idDepartement);
 
+    void notifierEtudiant(Long idEtudiant,String message);
+
 
 }

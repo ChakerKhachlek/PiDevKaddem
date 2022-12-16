@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface IEtudRepository extends CrudRepository<Etudiant,Long> {
 
-    @Query("select e from Etudiant e where upper(e.prenomE) like upper(?1)")
+    @Query("select e from Etudiant e where upper(e.prenom) like upper(?1)")
     List<Etudiant> findByPrenomELikeIgnoreCase(@Nullable String prenomE);
 
     @Query(
@@ -20,7 +20,7 @@ public interface IEtudRepository extends CrudRepository<Etudiant,Long> {
             nativeQuery = true)
     List<Etudiant> retreiveAllEtudiants();
 
-    @Query("select e from Etudiant e where upper(e.nomE) like upper(?1) and upper(e.prenomE) like upper(?2)")
+    @Query("select e from Etudiant e where upper(e.nom) like upper(?1) and upper(e.prenom) like upper(?2)")
     Optional<Etudiant> findByNomELikeIgnoreCaseAndPrenomELikeIgnoreCase(String nomE, String prenomE);
 
     @Query("select e from Etudiant e where e.departement.idDepart = ?1")
